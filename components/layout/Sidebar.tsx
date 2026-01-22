@@ -5,7 +5,7 @@ export type LinkItem = {
   href:string
 }
 
-export default function Sidebar() {
+export default function Sidebar({open,toggle}:{open:boolean,toggle:()=>void}) {
   const navLinks:LinkItem[] = [
     {
       name: "Dashboard",
@@ -17,9 +17,12 @@ export default function Sidebar() {
     },
   ];
   return (
-    <aside className="w-64 hidden lg:block bg-gray-100 border-r border-r-gray-300 ">
-      <div className="px-4 py-3 font-light text-lg text-gray-500">
-        [QR] <span className="font-bold text-foreground"> Admin</span>
+    <aside className={`w-64 ${!open && "hidden" } absolute h-full z-100 lg:static lg:block bg-gray-100 border-r border-r-gray-300`}>
+      <div className="px-4 py-3 font-light text-lg text-gray-500 flex items-center justify-between">
+        <span className="font-bold text-foreground"> CD Admin</span>
+        <button className="lg:hidden" onClick={()=>toggle()}>
+          close
+        </button>
       </div>
 
       <div className="bg-gray-300 h-px" />

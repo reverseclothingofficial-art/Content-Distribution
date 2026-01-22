@@ -5,6 +5,7 @@ import Input from "@/components/common/Input";
 import Loader from "@/components/common/Loader";
 import { useCreateContent } from "@/hooks/content";
 import { notify } from "@/lib/toast";
+import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 
 export default function CreateContent() {
@@ -171,7 +172,7 @@ export default function CreateContent() {
               />
             </div>
           </div>
-          <div>
+          <div className="flex gap-3">
             {/* <Button
               type="submit"
               title="Submit"
@@ -184,6 +185,9 @@ export default function CreateContent() {
               disabled={isPending}
               className="bg-foreground text-background text-sm flex items-center"
             />
+            <Link className="bg-background text-foreground text-sm flex items-center gap-2 cursor-pointer shadow-[inset_0_-1px_5px_rgba(0,0,0,0.2)] rounded-sm border p-2.5" href={"/content"}>
+            Back
+            </Link>
           </div>
         </form>
       </div>
