@@ -33,14 +33,14 @@ export default function ContentTable({
     "Actions",
   ];
   const [edit, setEdit] = useState<Content | null>(null);
-  const { data, isLoading } = useContentList(page);
-  const deleteMut = useDeleteContent();
+  const { data, isLoading } = useContentList(page,initialData);
+  const deleteMut = useDeleteContent(page);
   const generateQrMut = useGenerateQr();
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const router = useRouter();
 
   if (isLoading && !data) return <TableSkeleton />;
-  const items: Content[] = data?.items|| initialData || [];
+  const items: Content[] = data?.items|| [];
 
   const handleDelete = (id: string) => {
     if (!confirm("Delete this content? This action cannot be undone.")) return;

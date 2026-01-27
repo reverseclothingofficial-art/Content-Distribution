@@ -7,21 +7,27 @@ import {
   updateContent,
 } from "@/lib/api/content.client";
 import { contentKeys } from "@/lib/queryKeys";
+import { Content } from "@/types/content";
 
-export const useContentList = (page = 1) =>
-  useQuery({
-    queryKey: contentKeys.list(page),
-    queryFn: () => getContentList(page),
-    staleTime: 30_000,
-  });
+export const useContentList = (
+  page = 1, 
+  initialItems?: Content[]
+) => useQuery({
+  queryKey: contentKeys.list(page),
+  queryFn: () => getContentList(page),
+  initialData: initialItems ? { items: initialItems, total: 0 } : undefined,
+  initialDataUpdatedAt: 0,
+  staleTime: 30_000,
+});
 
-export const useDeleteContent = () => {
+export const useDeleteContent = (page = 1) => {
   const qc = useQueryClient();
 
   return useMutation({
     mutationFn: deleteContent,
     onSuccess: () => {
-      qc.invalidateQueries({ queryKey: contentKeys.lists() });
+      // Force refetch current page
+      qc.refetchQueries({ queryKey: contentKeys.list(page) });
     },
   });
 };

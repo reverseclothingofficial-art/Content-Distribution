@@ -4,7 +4,7 @@ export async function api<T = any>(
 ): Promise<T> {
   const res = await fetch(url, {
     ...options,
-    credentials: "same-origin",
+    credentials: "include",
   });
 
   if (!res.ok) {

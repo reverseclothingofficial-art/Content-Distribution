@@ -14,7 +14,7 @@ export default function CreateContent() {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [visibility, setVisibility] = useState("public");
+  const [visibility, setVisibility] = useState("restricted");
 
   const createMutation = useCreateContent();
 
@@ -108,7 +108,7 @@ export default function CreateContent() {
             ></textarea>
           </div>
 
-          <div>
+          <div className="hidden">
             <label
               htmlFor="visibility"
               className="block text-sm font-medium text-foreground mb-1"
