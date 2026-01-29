@@ -31,6 +31,7 @@ export default function ImageWithSkeleton({
       {hasSrc ? (
         <Image
           src={src as string}
+          loading="eager"
           alt={alt}
           fill
           sizes="(max-width: 640px) 100px, (max-width: 1024px) 200px, 300px"
